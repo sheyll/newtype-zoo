@@ -20,7 +20,11 @@ What the user actually wanted to express was:
 applyConfiguration :: Wanted MyConfig -> Current MyConfig -> IO (Active MyConfig)
 ```
 
-This simple library contains a list of simple newtype wrappers:
+The newtype wrappers in this library are all exported by
+the [`NewtypeZoo`](https://hackage.haskell.org/package/newtype-zoo/docs/NewtypeZoo.html) module, or can
+be imported individually.
+
+This simple library contains a variety of simple newtype wrappers:
 
 * [`Active`](https://hackage.haskell.org/package/newtype-zoo/docs/NewtypeZoo-Active.html)
 * [`Allocated`](https://hackage.haskell.org/package/newtype-zoo/docs/NewtypeZoo-Allocated.html)
@@ -64,3 +68,23 @@ This simple library contains a list of simple newtype wrappers:
 * [`Wanted`](https://hackage.haskell.org/package/newtype-zoo/docs/NewtypeZoo-Wanted.html)
 
 They live in the sub directory `NewtypeZoo`, e.g. `NewtypeZoo.Active`.
+
+This library offers **shorter code** for the special cases.
+The `tagged` library is more general, but requires **more code**.
+
+The reason why I prefer this library in some cases, is shorter type signatures.
+
+One can even combine `tagged` with `newtype-zoo` (I think I will add this to the README):
+
+```haskell
+
+import Data.Tagged
+import NewtypeZoo.Current
+import NewtypeZoo.Wanted
+
+applyConfigurationTagged
+  :: Tagged Wanted MyConfig
+  -> Tagged Current MyConfig
+  -> IO (Tagged Current MyConfig)
+
+```
