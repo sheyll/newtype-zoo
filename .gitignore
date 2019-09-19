@@ -20,3 +20,4 @@ TAGS
 /out/
 *.hie
 *.dump-hi
+stack.yaml.lock
