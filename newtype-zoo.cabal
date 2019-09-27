@@ -13,7 +13,7 @@ name:                newtype-zoo
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             1.1.0.0
+version:             1.2.0.0
 
 -- A short (one-line) description of the package.
 synopsis:            Newtype Wrapper Zoo
@@ -56,6 +56,7 @@ library
       NewtypeZoo
     , NewtypeZoo.Active
     , NewtypeZoo.Allocated
+    , NewtypeZoo.Available
     , NewtypeZoo.Broken
     , NewtypeZoo.Cached
     , NewtypeZoo.Complete
@@ -115,6 +116,7 @@ library
   -- Other library packages from which modules are imported.
   build-depends:
       base ^>=4.12.0.0
+    , comonad
     , data-default
     , deepseq
     , pointed

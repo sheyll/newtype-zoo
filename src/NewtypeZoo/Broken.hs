@@ -5,6 +5,7 @@ module NewtypeZoo.Broken
   , theBroken
   ) where
 
+import           Control.Comonad (Comonad)
 import           Control.DeepSeq (NFData)
 import           Control.Monad.Fix (MonadFix)
 import           Control.Monad.Zip (MonadZip)
@@ -23,6 +24,7 @@ import           GHC.Generics    (Generic, Generic1)
 import           System.Random   (Random)
 import           Test.QuickCheck (Arbitrary)
 
+-- | A wrapper for something that is `Broken`.
 newtype Broken a = Broken a
   deriving ( Eq
            , Ord
@@ -64,14 +66,16 @@ newtype Broken a = Broken a
            , MonadFix
            , Monad
            , MonadZip
-
+           , Comonad
            )
            via Identity
 
+-- | An accessor function for something 'Broken'.
 _theBroken :: Broken x -> x
 _theBroken (Broken !x) = x
 {-# INLINE _theBroken #-}
 
+-- | A lens for something 'Broken'.
 theBroken :: forall a b p f. (Profunctor p, Functor f) => p a (f b) -> p (Broken a) (f (Broken b))
 theBroken = dimap _theBroken (fmap Broken)
 {-# INLINE theBroken #-}

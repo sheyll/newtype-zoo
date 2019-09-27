@@ -1,11 +1,11 @@
--- | Indicate that something is `Consistent`.
-module NewtypeZoo.Consistent
-  ( Consistent(Consistent)
-  , _theConsistent
-  , theConsistent
-  , ConsistentTo(ConsistentTo)
-  , _theConsistentTo
-  , theConsistentTo
+-- | Indicate that something is `Available`.
+module NewtypeZoo.Available
+  ( Available(Available)
+  , _theAvailable
+  , theAvailable
+  , AvailableIn(AvailableIn)
+  , _theAvailableIn
+  , theAvailableIn
   ) where
 
 import           Control.Comonad (Comonad)
@@ -27,8 +27,8 @@ import           GHC.Generics    (Generic, Generic1)
 import           System.Random   (Random)
 import           Test.QuickCheck (Arbitrary)
 
--- | A wrapper for something that is `Consistent`.
-newtype Consistent a = Consistent a
+-- | A wrapper for something that is `Available`.
+newtype Available a = Available a
   deriving ( Eq
            , Ord
            , Read
@@ -73,20 +73,19 @@ newtype Consistent a = Consistent a
            )
            via Identity
 
--- | An accessor function for something 'Consistent'.
-_theConsistent :: Consistent x -> x
-_theConsistent (Consistent !x) = x
-{-# INLINE _theConsistent #-}
+-- | An accessor function for something 'Available'.
+_theAvailable :: Available x -> x
+_theAvailable (Available !x) = x
+{-# INLINE _theAvailable #-}
 
--- | A lens for something 'Consistent'.
-theConsistent :: forall a b p f. (Profunctor p, Functor f) => p a (f b) -> p (Consistent a) (f (Consistent b))
-theConsistent = dimap _theConsistent (fmap Consistent)
-{-# INLINE theConsistent #-}
+-- | A lens for something 'Available'.
+theAvailable :: forall a b p f. (Profunctor p, Functor f) => p a (f b) -> p (Available a) (f (Available b))
+theAvailable = dimap _theAvailable (fmap Available)
+{-# INLINE theAvailable #-}
 
-
--- | A wrapper for something that is `ConsistentTo` some context
+-- | A wrapper for something that is `AvailableIn` with respect to some context
 -- indicated by a (phantom-) type.
-newtype ConsistentTo ctx a = ConsistentTo a
+newtype AvailableIn ctx a = AvailableIn a
   deriving ( Eq
            , Ord
            , Read
@@ -131,12 +130,12 @@ newtype ConsistentTo ctx a = ConsistentTo a
            )
            via Identity
 
--- | An accessor function for something 'ConsistentTo'.
-_theConsistentTo :: ConsistentTo ctx x -> x
-_theConsistentTo (ConsistentTo !x) = x
-{-# INLINE _theConsistentTo #-}
+-- | An accessor function for something 'AvailableIn'.
+_theAvailableIn :: AvailableIn ctx x -> x
+_theAvailableIn (AvailableIn !x) = x
+{-# INLINE _theAvailableIn #-}
 
--- | A lens for something 'ConsistentTo'.
-theConsistentTo :: forall ctx a b p f. (Profunctor p, Functor f) => p a (f b) -> p (ConsistentTo ctx a) (f (ConsistentTo ctx b))
-theConsistentTo = dimap _theConsistentTo (fmap ConsistentTo)
-{-# INLINE theConsistentTo #-}
+-- | A lens for something 'AvailableIn'.
+theAvailableIn :: forall ctx a b p f. (Profunctor p, Functor f) => p a (f b) -> p (AvailableIn ctx a) (f (AvailableIn ctx b))
+theAvailableIn = dimap _theAvailableIn (fmap AvailableIn)
+{-# INLINE theAvailableIn #-}

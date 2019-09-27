@@ -1,5 +1,14 @@
 # Revision history for newtype-zoo
 
+## 1.2.0.0 -- 2019-09-27
+
+* Add `Available`
+* Add experimental two-parameter newtype wrappers:
+  * `AvailableIn`
+  * `ConsistentTo`
+* Add comonad instances to a few wrappers. If this proves valuable,
+  all type will get instances in a future release.
+
 ## 1.1.0.0 -- 2019-09-19
 
 * Add module `NewtypeZoo` which exports all reexports all wrappers.

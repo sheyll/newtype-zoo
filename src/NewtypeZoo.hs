@@ -1,3 +1,5 @@
+{-# LANGUAGE KindSignatures #-}
+{-# LANGUAGE TypeOperators #-}
 -- | General Purpose Newtype Wrappers
 --
 -- A zoo of /newtype/ wrappers.
@@ -60,5 +62,6 @@ import NewtypeZoo.Completed as X
 import NewtypeZoo.Complete as X
 import NewtypeZoo.Cached as X
 import NewtypeZoo.Broken as X
+import NewtypeZoo.Available as X
 import NewtypeZoo.Allocated as X
 import NewtypeZoo.Active as X

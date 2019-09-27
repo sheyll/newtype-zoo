@@ -5,6 +5,7 @@ module NewtypeZoo.Active
   , theActive
   ) where
 
+import           Control.Comonad (Comonad)
 import           Control.DeepSeq (NFData)
 import           Control.Monad.Fix (MonadFix)
 import           Control.Monad.Zip (MonadZip)
@@ -23,6 +24,7 @@ import           GHC.Generics    (Generic, Generic1)
 import           System.Random   (Random)
 import           Test.QuickCheck (Arbitrary)
 
+-- | A wrapper for something that is `Active`.
 newtype Active a = Active a
   deriving ( Eq
            , Ord
@@ -64,14 +66,16 @@ newtype Active a = Active a
            , MonadFix
            , Monad
            , MonadZip
-
+           , Comonad
            )
            via Identity
 
+-- | An accessor function for something 'Active'.
 _theActive :: Active x -> x
 _theActive (Active !x) = x
 {-# INLINE _theActive #-}
 
+-- | A lens for something 'Active'.
 theActive :: forall a b p f. (Profunctor p, Functor f) => p a (f b) -> p (Active a) (f (Active b))
 theActive = dimap _theActive (fmap Active)
 {-# INLINE theActive #-}

@@ -5,6 +5,7 @@ module NewtypeZoo.Cached
   , theCached
   ) where
 
+import           Control.Comonad (Comonad)
 import           Control.DeepSeq (NFData)
 import           Control.Monad.Fix (MonadFix)
 import           Control.Monad.Zip (MonadZip)
@@ -64,7 +65,7 @@ newtype Cached a = Cached a
            , MonadFix
            , Monad
            , MonadZip
-
+           , Comonad
            )
            via Identity
 

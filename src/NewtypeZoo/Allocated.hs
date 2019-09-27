@@ -5,6 +5,7 @@ module NewtypeZoo.Allocated
   , theAllocated
   ) where
 
+import           Control.Comonad (Comonad)
 import           Control.DeepSeq (NFData)
 import           Control.Monad.Fix (MonadFix)
 import           Control.Monad.Zip (MonadZip)
@@ -23,6 +24,7 @@ import           GHC.Generics    (Generic, Generic1)
 import           System.Random   (Random)
 import           Test.QuickCheck (Arbitrary)
 
+-- | A wrapper for something that is `Allocated`.
 newtype Allocated a = Allocated a
   deriving ( Eq
            , Ord
@@ -64,14 +66,16 @@ newtype Allocated a = Allocated a
            , MonadFix
            , Monad
            , MonadZip
-
+           , Comonad
            )
            via Identity
 
+-- | An accessor function for something 'Allocated'.
 _theAllocated :: Allocated x -> x
 _theAllocated (Allocated !x) = x
 {-# INLINE _theAllocated #-}
 
+-- | A lens for something 'Allocated'.
 theAllocated :: forall a b p f. (Profunctor p, Functor f) => p a (f b) -> p (Allocated a) (f (Allocated b))
 theAllocated = dimap _theAllocated (fmap Allocated)
 {-# INLINE theAllocated #-}
