@@ -1,46 +1,9 @@
 # Revision history for newtype-zoo
 
-## 1.3.0.0 -- 2019-10-08
 
-### Add some new types
+## 1.2.1.0 -- 2020-11-30
 
-* `Finished`
-* `InProgress`
-* `In`
-* `Out`
-* `Raw`
-* `Initial`
-* `Final`
-* `Extended`
-* `Expanded`
-* `Collapsed`
-* `Transformed`
-* `Modefied`
-* `Adapted`
-* `Adjusted`
-* `Processed`
-* `Biased`
-* `Saturated`
-* `Reduced`
-* `Simplified`
-* `Reused`
-
-### Add some time related types
-
-* `NewtypeZoo.Time`
-  * `NewtypeZoo.Time.Past`
-  * `NewtypeZoo.Time.Present`
-  * `NewtypeZoo.Time.Future`
-  * `NewtypeZoo.Time.Before`
-  * `NewtypeZoo.Time.After`
-  * `NewtypeZoo.Time.Permanent`
-  * `NewtypeZoo.Time.Temporary`
-
-### Add new 2-parameter types
-
-* `NewtypeZoo2`
-  * `NewtypeZoo2.Un`
-  * `NewtypeZoo2.Not`
+* Make ghc-8.10 compatible
 
 ## 1.2.0.0 -- 2019-09-27
 
