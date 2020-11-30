@@ -10,12 +10,16 @@ pkgs.haskell-nix.project {
   compiler-nix-name = "ghc8102";
   pkg-def-extras = [ ];
   modules =
-    if withProfiling then
+    [{
+      packages.newtype-zoo.doCheck = false;
+      packages.newtype-zoo.components.library.doCoverage = true;
+    }] ++
+    (if withProfiling then
       [{
         packages.newtype-zoo.package.ghcOptions = "-fprof-auto";
         packages.newtype-zoo.components.library.enableLibraryProfiling = true;
       }]
-    else [ ]
+    else [ ])
   ;
 }
 
